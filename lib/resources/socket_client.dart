@@ -6,18 +6,11 @@ class SocketClient {
   static SocketClient? _instance;
 
   SocketClient._internal() {
-    print("socket here");
-
-    socket = IO.io("http://localhost:5050", <String, dynamic>{
+    socket = IO.io("http://192.168.42.108:5050", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
     socket!.connect();
-    socket!.onConnect((_) {
-      print('connect');
-      socket!.emit('msg', 'test');
-    });
-    socket!.onDisconnect((_) => print('disconnect'));
   }
 
   static SocketClient get instance {
